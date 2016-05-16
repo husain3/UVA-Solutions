@@ -1,4 +1,4 @@
-#include <iostream>
+#include <stdio.h>
 
 int main()
 {
@@ -6,7 +6,7 @@ int main()
 
 	int currArray[3000];
 	FILE * fp;
-	fp = fopen("r", "arrays.txt");
+	fp = fopen("arrays.txt", "r");
 	if(fp != NULL)
 	{
 		char  num;
@@ -17,7 +17,8 @@ int main()
 			while(num != '\n')
 			{
 				fscanf(fp, "%c", &num);
-				currArray[iterator] = (int) num;
+				int a = (int) num;
+				currArray[iterator] = a;
 				iterator++;
 			}
 		}
