@@ -13,18 +13,25 @@ int main()
 	{
 		char  num;
 		fscanf(fp, "%c", &num);
-		int iterator = 0;
 		while(!feof(fp))
 		{	
+			int iterator = 0;
 			while(num != '\n')
 			{	
-				if(num != ' ')
+				if(num != ' ' && num != '-')
 				{
 					int a = (int) num - '0';
 					currArray[iterator] = a;
 					iterator++;
 				}
 				fscanf(fp, "%c", &num);
+			}
+			//printf("iterator: %d\n", iterator);
+			if(iterator == 0)
+			{
+				fscanf(fp, "%c", &num);
+				continue;
+
 			}
 			int elementDiffSize = 0;
 			for(int i = 0; i < iterator; i++)
@@ -54,8 +61,11 @@ int main()
 				
 				if(elementDiff[j+1] == number || elementDiff[j+1] == number-1)
 				{
-
+					//printf("elementDiff: %d, number %d\n", elementDiff[j+1], number);
+					
 				} else {
+					//printf("elementDiff: %d, number %d\n", elementDiff[j+1], number);
+	
 					isJolly = false;
 					break;
 				}
