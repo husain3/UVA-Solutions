@@ -76,7 +76,7 @@ int main()
 				printf("Jolly\n");
 
 			} else {
-				printf("Not Jelly\n");
+				printf("Not jolly\n");
 			}
 			fscanf(fp, "%c", &num);		
 		}
