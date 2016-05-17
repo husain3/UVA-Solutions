@@ -1,12 +1,20 @@
 #include <stdio.h>
 #include <cmath>
+#include <stdlib.h>
+
+
 
 int main()
 {
 	using namespace std;
-
-	int currArray[3000];
-	int elementDiff[3000];
+	
+	int currArrayAlloc = 10;
+	int elementDiffAlloc = 10;
+	int * currArray;
+	int * elementDiff;
+	currArray = (int *) malloc(currArrayAlloc);
+	elementDiff = (int *) malloc(elementDiffAlloc);
+	
 	FILE * fp;
 	fp = fopen("arrays.txt", "r");
 	if(fp != NULL)
@@ -24,9 +32,18 @@ int main()
 					currArray[iterator] = a;
 					iterator++;
 				}
-				fscanf(fp, "%c", &num);
+		
+				fscanf(fp, "%c", &num);	
+#if DEBUG
+				printf("iterator: %d\n", iterator);		
+#endif
+				if(iterator == currArrayAlloc)
+				{
+					currArrayAlloc+=10;
+					currArray = (int *) malloc(currArrayAlloc);
+				}
 			}
-			//printf("iterator: %d\n", iterator);
+		
 			if(iterator == 0)
 			{
 				fscanf(fp, "%c", &num);
@@ -34,12 +51,15 @@ int main()
 
 			}
 			int elementDiffSize = 0;
+#if DEBUG
 			for(int i = 0; i < iterator; i++)
 			{
-				//printf("%d ", currArray[i]);
+				printf("%d ", currArray[i]);
 
 			}
-		//	printf("\n");	
+
+			printf("\n");	
+#endif
 			for(int i = 0; i < iterator; i++ )
 			{
 				int diff = currArray[i] - currArray[i + 1];
@@ -49,11 +69,13 @@ int main()
 			
 			}
 			iterator = 0;
+#if DEBUG
 			for(int i = 0; i < elementDiffSize; i++)
 			{
-      				//printf("%d ", elementDiff[i]);
+      				printf("%d ", elementDiff[i]);
 
-			}	
+			}
+#endif
 			bool isJolly = true;
 			for(int j = 0; j < elementDiffSize-1; j++) 
 			{
@@ -61,11 +83,13 @@ int main()
 				
 				if(elementDiff[j+1] == number || elementDiff[j+1] == number-1)
 				{
-					//printf("elementDiff: %d, number %d\n", elementDiff[j+1], number);
-					
+#if DEBUG
+					printf("elementDiff: %d, number %d\n", elementDiff[j+1], number);
+#endif		
 				} else {
-					//printf("elementDiff: %d, number %d\n", elementDiff[j+1], number);
-	
+#if DEBUG
+					printf("elementDiff: %d, number %d\n", elementDiff[j+1], number);
+#endif	
 					isJolly = false;
 					break;
 				}
