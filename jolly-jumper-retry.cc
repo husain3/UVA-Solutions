@@ -12,9 +12,9 @@ int main()
 	int numberArray[3000];
 	int elementDiff[3000];
 	
-	for(;;)
+	while(scanf("%d", &numOfNumbers))
+
 	{
-		scanf("%d", &numOfNumbers);
 		int iterator = 0;
 		while(iterator < numOfNumbers)
 		{
