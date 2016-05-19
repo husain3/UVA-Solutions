@@ -15,20 +15,22 @@ int main()
 	currArray = (int *) malloc(currArrayAlloc);
 	elementDiff = (int *) malloc(elementDiffAlloc);
 	
-	FILE * fp;
-	fp = fopen("arrays.txt", "r");
-	if(fp != NULL)
-	{
-		char  num;
-		fscanf(fp, "%c", &num);
-		while(!feof(fp))
+	//FILE * fp;
+	//fp = fopen("arrays.txt", "r");
+	//int amountOfNumbers = 0;
+	//while(amountOfNumbers > 0)
+	//{
+		int  num;
+		scanf("%d", &num);
+		int amountOfNumbers = 0;
+		while(amountOfNumbers > 0)
 		{	
 			int iterator = 0;
 			while(num != '\n')
 			{	
 				if(num != ' ' && num != '-')
 				{
-					int a = (int) num - '0';
+					int a = num;
 					currArray[iterator] = a;
 					iterator++;
 				}
@@ -103,11 +105,9 @@ int main()
 				printf("Not jolly\n");
 			}
 			fscanf(fp, "%c", &num);		
+		
+		amountOfNumbers--;
 		}
-	} else {
-		//printf("File cannot be opened\n");
-		return 0;
-	}
-
+	//}
 
 }
