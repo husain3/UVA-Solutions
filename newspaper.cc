@@ -37,11 +37,11 @@ int main()
 			//printf("%s", line);
 			character = '0';
 			//printf("%c", character);
-			while(character != '\n' && character != '\0')
+			while(character != 10  && character != 255)
 			{
 				int c = fgetc(stdin);
 				character = c;
-				//printf("%c", character);
+				//printf("%u", character);
 				std::unordered_map<unsigned char, int>::const_iterator got = paidCharacters.find(character);
 				if(got != paidCharacters.end())
 				{	

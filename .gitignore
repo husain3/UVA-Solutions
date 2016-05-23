@@ -1,5 +1,6 @@
 *.txt
 !spec/*.txt
-
+*.swp
+!spec/*.swp
 /a.out
 
