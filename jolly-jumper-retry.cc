@@ -9,12 +9,15 @@ int main()
 
 	int numOfNumbers;
 	int numInSequence;
-	int numberArray[3000];
-	int elementDiff[3000];
+	int * numberArray;
+	int * elementDiff;
 	
 	while(scanf("%d", &numOfNumbers))
 
 	{
+		numberArray = (int *) calloc(sizeof(int), 3000);
+		elementDiff = (int *) calloc(sizeof(int), 3000);	
+		
 		int iterator = 0;
 		while(iterator < numOfNumbers)
 		{
@@ -30,20 +33,28 @@ int main()
 		{
 			//printf("%d ", numberArray[i]);
 			int diff = numberArray[i] - numberArray[i + 1];	
-			elementDiff[i] = abs(diff);
+			elementDiff[abs(diff)] = 1;
 			elementDiffSize = i;
 		}
 		bool isJolly = true;
-		for(int j = 0; j < elementDiffSize; j++)
+		//printf("elementDiffSize %d\n", elementDiffSize);
+		for(int j = 1; j <= elementDiffSize; j++)
 		{
 			int number = elementDiff[j];
 			//printf("%d ", number);
-			if(elementDiff[j+1] != number - 1)
+			/*if(elementDiff[j+1] != number - 1)
 			{
 				isJolly = false;
 				break;
-			}
+			}*/
+		//	printf("%d ", elementDiff[j]);	
+			if(elementDiff[j] == 0)
+			{
+				isJolly = false;
+				break;
 
+			}
+			elementDiff[j] = 0;
 		}
 		if(isJolly == true)
 		{
